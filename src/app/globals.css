@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --px: 4px; }
+html { color-scheme: dark; }
+body {
+  @apply font-body text-white min-h-screen;
+  background-color: #0b1a10;
+  background-image:
+    linear-gradient(180deg, rgba(11,26,16,0) 0%, rgba(11,26,16,.92) 70%),
+    repeating-linear-gradient(90deg, rgba(63,125,32,.10) 0 32px, rgba(0,0,0,0) 32px 64px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 32px, rgba(0,0,0,0) 32px 64px);
+}
+
+@layer components {
+  /* Stepped, blocky border built from box-shadows (no border-radius anywhere) */
+  .mc-panel {
+    @apply bg-panel relative;
+    box-shadow: 0 0 0 4px #000, inset 4px 4px 0 rgba(255,255,255,.08), inset -4px -4px 0 rgba(0,0,0,.35);
+  }
+  .mc-plank {
+    background: #b8793a repeating-linear-gradient(180deg, rgba(0,0,0,.12) 0 4px, transparent 4px 20px);
+    box-shadow: 0 0 0 4px #000, inset 4px 4px 0 rgba(255,255,255,.25), inset -4px -4px 0 rgba(0,0,0,.35);
+  }
+  .mc-grass-top { border-top: 16px solid #5db136; box-shadow: 0 0 0 4px #000, inset 0 8px 0 #3f7d20, inset 4px 4px 0 rgba(255,255,255,.08), inset -4px -4px 0 rgba(0,0,0,.35); }
+
+  .mc-input {
+    @apply w-full bg-black/60 text-white px-3 py-3 font-body text-base outline-none;
+    box-shadow: 0 0 0 3px #000, inset 3px 3px 0 rgba(0,0,0,.6), inset -3px -3px 0 rgba(255,255,255,.12);
+  }
+  .mc-input::placeholder { color: #8a9a8c; }
+  .mc-input:focus-visible { box-shadow: 0 0 0 3px #ffc21a, inset 3px 3px 0 rgba(0,0,0,.6); }
+  .mc-input[aria-invalid="true"] { box-shadow: 0 0 0 3px #ff4d4d, inset 3px 3px 0 rgba(0,0,0,.6); }
+
+  .mc-btn {
+    @apply font-pixel text-xs sm:text-sm text-white px-5 py-4 select-none transition-transform duration-100;
+    background: #5db136;
+    box-shadow: 0 0 0 4px #000, inset 4px 4px 0 rgba(255,255,255,.35), inset -4px -4px 0 rgba(0,0,0,.35);
+    text-shadow: 2px 2px 0 rgba(0,0,0,.55);
+  }
+  .mc-btn:hover:not(:disabled) { background: #6fc943; transform: translateY(-2px); }
+  .mc-btn:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 0 0 4px #000, inset 4px 4px 0 rgba(0,0,0,.35); }
+  .mc-btn:focus-visible { outline: 4px solid #ffc21a; outline-offset: 4px; }
+  .mc-btn:disabled { @apply opacity-60 cursor-not-allowed; }
+  .mc-btn-orange { background: #f08a12; }
+  .mc-btn-orange:hover:not(:disabled) { background: #ffa53a; }
+  .mc-btn-stone { background: #6b6b75; }
+  .mc-btn-stone:hover:not(:disabled) { background: #85858f; }
+
+  .mc-choice {
+    @apply flex-1 cursor-pointer px-4 py-3 text-center font-pixel text-xs bg-black/50 transition-colors;
+    box-shadow: 0 0 0 3px #000, inset 3px 3px 0 rgba(255,255,255,.1);
+  }
+  .mc-choice:hover { background: rgba(93,177,54,.25); }
+  .mc-choice:has(input:checked) { background: #5db136; text-shadow: 2px 2px 0 rgba(0,0,0,.5); }
+  .mc-choice:has(input:focus-visible) { outline: 3px solid #ffc21a; outline-offset: 3px; }
+
+  .mc-label { @apply block mb-2 text-sm font-semibold text-gold; }
+  .mc-error { @apply mt-2 text-sm text-[#ff8f8f]; }
+}
+
+@keyframes drop-in { from { transform: translateY(-24px); opacity: 0; } to { transform: none; opacity: 1; } }
+.logo-drop { animation: drop-in .7s steps(6) both; }
+@keyframes blink { 50% { opacity: 0; } }
+.blink { animation: blink 1s steps(1) infinite; }
+@media (prefers-reduced-motion: reduce) { .logo-drop, .blink { animation: none; } * { transition: none !important; } }
