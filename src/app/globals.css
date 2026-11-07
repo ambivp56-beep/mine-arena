@@ -65,3 +65,163 @@ body {
 @keyframes blink { 50% { opacity: 0; } }
 .blink { animation: blink 1s steps(1) infinite; }
 @media (prefers-reduced-motion: reduce) { .logo-drop, .blink { animation: none; } * { transition: none !important; } }
+
+/* =========================================
+   MINE ARENA REGISTRATION FORM ALIGNMENT
+   ========================================= */
+
+.mc-form {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  box-sizing: border-box;
+}
+
+.mc-section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.22);
+  box-sizing: border-box;
+}
+
+.mc-section > .mc-section-title {
+  grid-column: 1 / -1;
+}
+
+.mc-section-title {
+  width: 100%;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.mc-section-title h2 {
+  margin: 0 0 10px;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #ffc21a;
+}
+
+.mc-section-title p {
+  margin: 0;
+  color: #c5d1c6;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.mc-field {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+
+.mc-label {
+  width: 100%;
+  text-align: left;
+}
+
+.mc-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+textarea.mc-input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.mc-choice-row {
+  width: 100%;
+  display: flex;
+  gap: 14px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.mc-choice {
+  min-width: 0;
+}
+
+.mc-error {
+  width: 100%;
+  line-height: 1.5;
+}
+
+.mc-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  line-height: 1.7;
+}
+
+.mc-consent input {
+  flex-shrink: 0;
+  margin-top: 5px;
+  accent-color: #5db136;
+}
+
+.mc-privacy {
+  margin-top: 16px;
+  color: #c5d1c6;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.mc-submit {
+  width: 100%;
+  min-height: 54px;
+  padding: 14px 20px;
+  background: #5db136;
+  color: white;
+  font-weight: 800;
+  box-shadow: 0 0 0 4px #000,
+    inset 4px 4px 0 rgba(255,255,255,.25),
+    inset -4px -4px 0 rgba(0,0,0,.35);
+  cursor: pointer;
+}
+
+.mc-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mc-server-error {
+  text-align: center;
+}
+
+/* Mobile layout */
+@media (max-width: 640px) {
+  .mc-form {
+    gap: 22px;
+  }
+
+  .mc-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 18px 14px;
+  }
+
+  .mc-section > .mc-section-title {
+    grid-column: 1;
+  }
+
+  .mc-section-title h2 {
+    font-size: 1.1rem;
+  }
+
+  .mc-choice-row {
+    gap: 12px;
+  }
+}
